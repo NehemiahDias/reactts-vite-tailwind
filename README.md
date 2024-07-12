@@ -14,7 +14,7 @@ This forkable template / npm package provides an empty setup to get working with
 
 ## Instructions
 
-1. In console, `run npx @nehemiahdias/create-reactts-vite-tailwind {newRepoNameHere}`
+1. In console, run `npx @nehemiahdias/create-reactts-vite-tailwind {newRepoNameHere}`
 
 _ALTERNATIVE_
 
