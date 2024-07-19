@@ -25,6 +25,16 @@ console.log(`Cloning repository with name ${repoName}`);
 const checkedOut = runCommand(gitCheckout);
 if (!checkedOut) process.exit(-1);
 
+const packageJsonPath = `${repoName}/package.json`;
+const packageJson = JSON.parse(fs.readFileSync(packageJsonPath, 'utf8'));
+packageJson.name = repoName;
+fs.writeFileSync(packageJsonPath, JSON.stringify(packageJson));
+
+console.log(`Initializing new Git repository for ${repoName}`);
+const initGit = `cd ${repoName} && rm -rf .git && git init && git add . && git commit -m "Initial commit"`;
+const gitInit = runCommand(initGit);
+if (!gitInit) process.exit(-1);
+
 console.log(`Installing dependencies for ${repoName}`);
 const installDeps = runCommand(installDepsCommand);
 

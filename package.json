@@ -1,7 +1,7 @@
 {
     "name": "@nehemiahdias/create-reactts-vite-tailwind",
     "description": "React template for an empty setup to get working with the React + TypeScript + Vite + TailwindCSS + SCSS techstack",
-    "version": "1.0.4",
+    "version": "1.1.0",
     "author": "Nehemiah Dias <nehemiahdias@gmail.com>",
     "bin": "./bin/cli.js",
     "type": "module",
