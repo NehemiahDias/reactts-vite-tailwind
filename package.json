@@ -19,7 +19,8 @@
         "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
         "preview": "vite preview",
         "prettier-check": "npx prettier . --check",
-        "prettier": "npx prettier . --write"
+        "prettier": "npx prettier . --write",
+        "test": ""
     },
     "dependencies": {
         "react": "^18.3.1",
