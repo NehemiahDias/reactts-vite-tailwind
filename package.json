@@ -1,7 +1,7 @@
 {
     "name": "@nehemiahdias/create-reactts-vite-tailwind",
     "description": "A package to quickly create a web app with TypeScript, Tailwind, Vite, Tailwind, SCSS, and React.",
-    "version": "1.1.7",
+    "version": "1.1.8",
     "author": "Nitro",
     "bin": "./bin/cli.js",
     "type": "module",
