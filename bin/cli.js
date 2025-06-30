@@ -2,11 +2,6 @@
 import { execSync } from 'child_process';
 import fs from 'fs';
 import path from 'path';
-import { fileURLToPath } from 'url';
-
-// Get current directory for ES modules
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
 
 const runCommand = (command) => {
     try {
@@ -23,7 +18,6 @@ const deletePath = (targetPath) => {
         if (fs.existsSync(targetPath)) {
             const stat = fs.lstatSync(targetPath);
             if (stat.isDirectory()) {
-                // Use fs.rmSync for recursive directory removal (Node.js 14.14.0+)
                 fs.rmSync(targetPath, { recursive: true, force: true });
                 console.log(`Deleted directory: ${targetPath}`);
             } else {
@@ -47,13 +41,17 @@ if (!repoName) {
 
 const gitCheckout = `git clone --depth 1 https://github.com/NehemiahDias/reactts-vite-tailwind ${repoName}`;
 
-console.log(`Cloning repository with name ${repoName}`);
+console.log(
+    `Cloning repository with name ${repoName}\nUsing reactts-vite-tailwind by \x1b[35mNitro\x1b[0m \x1b[33mv1.1.5\x1b[0m`
+);
 const checkedOut = runCommand(gitCheckout);
 if (!checkedOut) process.exit(-1);
 
-// Delete unwanted files and folders
+// Delete unwanted files and folders - use process.cwd() to get current working directory
 console.log('Cleaning up repository files...');
-const repoPath = path.resolve(repoName);
+const repoPath = path.join(process.cwd(), repoName);
+console.log(`Working with repository at: ${repoPath}`);
+
 deletePath(path.join(repoPath, '.git'));
 deletePath(path.join(repoPath, '.github'));
 deletePath(path.join(repoPath, '.npmrc'));
@@ -76,7 +74,7 @@ try {
         fs.writeFileSync(packageJsonPath, JSON.stringify(packageJson, null, 2));
         console.log(`Updated package.json with name: ${repoName} and removed unwanted fields`);
     } else {
-        console.error('package.json not found');
+        console.error(`package.json not found at: ${packageJsonPath}`);
         process.exit(-1);
     }
 } catch (error) {
