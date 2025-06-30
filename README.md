@@ -1,6 +1,6 @@
 # React + TypeScript + Vite + TailwindCSS + SCSS
 
-This forkable template / npm package provides an empty setup to get working with the React + TypeScript + Vite + TailwindCSS + SCSS techstack.
+A package made to allow for a quick start for the teck stack: React, TypeScript, Vite, Tailwind, and SCSS.
 
 ## Includes
 
