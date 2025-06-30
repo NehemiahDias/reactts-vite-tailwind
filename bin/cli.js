@@ -47,14 +47,14 @@ console.log(
 const checkedOut = runCommand(gitCheckout);
 if (!checkedOut) process.exit(-1);
 
-// Delete unwanted files and folders - use process.cwd() to get current working directory
+// Delete unwanted files and folders
 console.log('Cleaning up repository files...');
 const repoPath = path.join(process.cwd(), repoName);
-console.log(`Working with repository at: ${repoPath}`);
 
 deletePath(path.join(repoPath, '.git'));
 deletePath(path.join(repoPath, '.github'));
 deletePath(path.join(repoPath, '.npmrc'));
+deletePath(path.join(repoPath, 'bin')); // Add this line to delete bin folder
 
 const packageJsonPath = path.join(repoPath, 'package.json');
 
