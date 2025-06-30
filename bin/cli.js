@@ -42,7 +42,7 @@ if (!repoName) {
 const gitCheckout = `git clone --depth 1 https://github.com/NehemiahDias/reactts-vite-tailwind ${repoName}`;
 
 console.log(
-    `Cloning repository with name ${repoName}\nUsing reactts-vite-tailwind by \x1b[35mNitro\x1b[0m \x1b[33mv1.1.5\x1b[0m`
+    `Cloning repository with name ${repoName}\nUsing reactts-vite-tailwind by \x1b[35mNitro\x1b[0m \x1b[33mv1.1.6\x1b[0m`
 );
 const checkedOut = runCommand(gitCheckout);
 if (!checkedOut) process.exit(-1);
