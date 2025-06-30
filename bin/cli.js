@@ -2,6 +2,11 @@
 import { execSync } from 'child_process';
 import fs from 'fs';
 import path from 'path';
+import { fileURLToPath } from 'url';
+
+// Get current directory for ES modules
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const runCommand = (command) => {
     try {
@@ -14,21 +19,22 @@ const runCommand = (command) => {
 };
 
 const deletePath = (targetPath) => {
-    if (fs.existsSync(targetPath)) {
-        const stat = fs.lstatSync(targetPath);
-        if (stat.isDirectory()) {
-            // Recursively delete directory contents
-            fs.readdirSync(targetPath).forEach((file) => {
-                const curPath = path.join(targetPath, file);
-                deletePath(curPath);
-            });
-            fs.rmdirSync(targetPath);
-            console.log(`Deleted directory: ${targetPath}`);
+    try {
+        if (fs.existsSync(targetPath)) {
+            const stat = fs.lstatSync(targetPath);
+            if (stat.isDirectory()) {
+                // Use fs.rmSync for recursive directory removal (Node.js 14.14.0+)
+                fs.rmSync(targetPath, { recursive: true, force: true });
+                console.log(`Deleted directory: ${targetPath}`);
+            } else {
+                fs.unlinkSync(targetPath);
+                console.log(`Deleted file: ${targetPath}`);
+            }
         } else {
-            // Delete file
-            fs.unlinkSync(targetPath);
-            console.log(`Deleted file: ${targetPath}`);
+            console.log(`Path does not exist: ${targetPath}`);
         }
+    } catch (error) {
+        console.error(`Error deleting ${targetPath}:`, error.message);
     }
 };
 
@@ -47,27 +53,34 @@ if (!checkedOut) process.exit(-1);
 
 // Delete unwanted files and folders
 console.log('Cleaning up repository files...');
-deletePath(path.join(repoName, '.git'));
-deletePath(path.join(repoName, '.github'));
-deletePath(path.join(repoName, '.npmrc'));
+const repoPath = path.resolve(repoName);
+deletePath(path.join(repoPath, '.git'));
+deletePath(path.join(repoPath, '.github'));
+deletePath(path.join(repoPath, '.npmrc'));
 
-const packageJsonPath = path.join(repoName, 'package.json');
+const packageJsonPath = path.join(repoPath, 'package.json');
 
 try {
-    const packageJson = JSON.parse(fs.readFileSync(packageJsonPath, 'utf8'));
+    if (fs.existsSync(packageJsonPath)) {
+        const packageJsonContent = fs.readFileSync(packageJsonPath, 'utf8');
+        const packageJson = JSON.parse(packageJsonContent);
 
-    // Update the name
-    packageJson.name = repoName;
+        // Update the name
+        packageJson.name = repoName;
 
-    // Remove unwanted fields
-    delete packageJson.bin;
-    delete packageJson.repository;
-    delete packageJson.publishConfig;
+        // Remove unwanted fields
+        delete packageJson.bin;
+        delete packageJson.repository;
+        delete packageJson.publishConfig;
 
-    fs.writeFileSync(packageJsonPath, JSON.stringify(packageJson, null, 2));
-    console.log(`Updated package.json with name: ${repoName} and removed unwanted fields`);
+        fs.writeFileSync(packageJsonPath, JSON.stringify(packageJson, null, 2));
+        console.log(`Updated package.json with name: ${repoName} and removed unwanted fields`);
+    } else {
+        console.error('package.json not found');
+        process.exit(-1);
+    }
 } catch (error) {
-    console.error('Error updating package.json:', error);
+    console.error('Error updating package.json:', error.message);
     process.exit(-1);
 }
 
@@ -78,7 +91,7 @@ const gitInit = runCommand(initGit);
 if (!gitInit) process.exit(-1);
 
 console.log(`Installing dependencies for ${repoName}`);
-const installDepsCommand = `cd ${repoName} && npm i`;
+const installDepsCommand = `cd ${repoName} && npm install`;
 const installDeps = runCommand(installDepsCommand);
 
 if (!installDeps) process.exit(-1);
