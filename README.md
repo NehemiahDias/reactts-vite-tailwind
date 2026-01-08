@@ -1,40 +1,80 @@
 # React + TypeScript + Vite + TailwindCSS + SCSS
 
-A package made to allow for a quick start for the teck stack: React, TypeScript, Vite, Tailwind, and SCSS.
+Modern, production-ready React starter with latest tools and zero-config setup.
 
-## Includes
+## Features
 
--   TypeScript
--   React
--   Vite
--   TailwindCSS
--   SCSS
--   Prettier formatting
--   Routing (react-router-dom)
+-   **React 19** - Latest stable with improved performance
+-   **TypeScript 5** - Full type safety and modern syntax
+-   **Vite 6** - HMR and optimized builds
+-   **Tailwind CSS 3** - Utility-first styling
+-   **SCSS** - Enhanced CSS with nesting and variables
+-   **React Router 7** - Modern routing with error boundaries
+-   **ESLint 9** - Latest flat config with TypeScript support
+-   **Prettier** - Consistent code formatting
+-   **Path Aliases** - Clean imports with `@/` prefix
 
-## Instructions
+## Quick Start
 
-1. In console, run `npx @nehemiahdias/create-reactts-vite-tailwind {newRepoNameHere}`
+```bash
+npx @nehemiahdias/create-reactts-vite-tailwind my-app
+cd my-app
+npm install
+npm run dev
+```
 
-_ALTERNATIVE_
+Open http://localhost:3000 in your browser.
 
-1. Fork / Clone the repository
-2. Run `npm install` in the console
-3. Navigate to `App.tsx` and get workin'! Customize routes at `main.tsx`.
+## Available Scripts
 
-## Commands
+| Command                | Description                               |
+| ---------------------- | ----------------------------------------- |
+| npm run dev            | Start development server with --host flag |
+| npm run build          | Type-check and build for production       |
+| npm run preview        | Preview production build locally          |
+| npm run lint           | Check code with ESLint                    |
+| npm run lint:fix       | Auto-fix linting issues                   |
+| npm run type-check     | Validate TypeScript without building      |
+| npm run prettier       | Format all files                          |
+| npm run prettier-check | Check if files are formatted              |
 
-`npm i` - Install dependencies
+## Path Aliases
 
-`npm run dev` - Inits HMR enabled session
+Clean imports without relative path hell:
 
-`npm run lint` - Runs eslint to check for errors
+```typescript
+// Use
+import { Button } from '@components/Button';
+```
 
-`npm run prettier-check` - Checks code formatting based on `.prettierrc.json`
+## Available aliases:
 
-`npm run prettier` - Formats all files based on `.prettierrc.json`
+-   @/ - src/
+-   @components/ - src/components/
+-   @hooks/ - src/hooks/
+-   @utils/ - src/utils/
+-   @types/ - src/types/
 
-## TODO
+## Requirements
 
--   Add storybook
--   Create package entry/exit points for quick inits of package repos
+Node.js >= 18.0.0
+
+npm >= 9.0.0
+
+## What's Included
+
+-   TypeScript strict mode
+-   ESLint with React 19 rules
+-   Prettier pre-configured
+-   Path aliases pre-configured
+-   Modern CSS reset
+-   Router with error boundary
+-   Optimized production builds
+-   Build chunking for better caching
+
+#
+
+License
+MIT © Nitro
+
+Need help? [Open an issue](https://github.com/NehemiahDias/reactts-vite-tailwind/issues)
