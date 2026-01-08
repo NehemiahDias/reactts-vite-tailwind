@@ -1,44 +1,64 @@
 {
     "name": "@nehemiahdias/create-reactts-vite-tailwind",
-    "description": "A package to quickly create a web app with TypeScript, Tailwind, Vite, Tailwind, SCSS, and React.",
-    "version": "1.2.0",
+    "description": "Modern React starter template with TypeScript, Vite, Tailwind CSS, and SCSS for rapid development.",
+    "version": "2.0.0",
     "author": "Nitro",
     "bin": "./bin/cli.js",
     "type": "module",
     "license": "MIT",
+    "keywords": [
+        "react",
+        "typescript",
+        "vite",
+        "tailwind",
+        "template",
+        "starter",
+        "boilerplate"
+    ],
+    "engines": {
+        "node": ">=18.0.0",
+        "npm": ">=9.0.0"
+    },
     "repository": {
         "type": "git",
         "url": "https://github.com/NehemiahDias/reactts-vite-tailwind"
     },
+    "homepage": "https://github.com/NehemiahDias/reactts-vite-tailwind#readme",
+    "bugs": {
+        "url": "https://github.com/NehemiahDias/reactts-vite-tailwind/issues"
+    },
     "scripts": {
-        "dev": "vite",
+        "dev": "vite --host",
         "build": "tsc -b && vite build",
-        "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
+        "lint": "eslint .",
+        "lint:fix": "eslint . --fix",
         "preview": "vite preview",
         "prettier-check": "npx prettier . --check",
         "prettier": "npx prettier . --write",
+        "type-check": "tsc --noEmit",
         "test": ""
     },
     "dependencies": {
-        "react": "^18.3.1",
-        "react-dom": "^18.3.1",
-        "react-router-dom": "^6.24.1",
-        "scss": "^0.2.4"
+        "react": "^19.2.3",
+        "react-dom": "^19.2.3",
+        "react-router-dom": "^7.12.0"
     },
     "devDependencies": {
-        "@types/react": "^18.3.3",
-        "@types/react-dom": "^18.3.0",
-        "@typescript-eslint/eslint-plugin": "^7.13.1",
-        "@typescript-eslint/parser": "^7.13.1",
-        "@vitejs/plugin-react": "^4.3.1",
+        "@eslint/js": "^9.39.2",
+        "@types/node": "^25.0.3",
+        "@types/react": "^19.2.7",
+        "@types/react-dom": "^19.2.3",
+        "@vitejs/plugin-react": "^5.1.2",
         "autoprefixer": "^10.4.19",
-        "eslint": "^8.57.0",
-        "eslint-plugin-react-hooks": "^4.6.2",
-        "eslint-plugin-react-refresh": "^0.4.7",
+        "eslint": "^9.39.2",
+        "eslint-plugin-react": "^7.37.5",
+        "eslint-plugin-react-hooks": "^5.2.0",
+        "eslint-plugin-react-refresh": "^0.4.26",
         "postcss": "^8.4.39",
         "sass": "^1.77.7",
         "tailwindcss": "^3.4.4",
-        "typescript": "^5.2.2",
-        "vite": "^5.3.1"
+        "typescript": "^5.9.3",
+        "typescript-eslint": "^8.52.0",
+        "vite": "^6.4.1"
     }
 }
