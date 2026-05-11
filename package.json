@@ -1,7 +1,7 @@
 {
     "name": "@nehemiahdias/create-reactts-vite-tailwind",
     "description": "Modern React starter template with TypeScript, Vite, Tailwind CSS, and SCSS for rapid development.",
-    "version": "2.0.0",
+    "version": "2.0.1",
     "author": "Nitro",
     "bin": "./bin/cli.js",
     "type": "module",
@@ -39,9 +39,9 @@
         "test": ""
     },
     "dependencies": {
-        "react": "^19.2.3",
-        "react-dom": "^19.2.3",
-        "react-router-dom": "^7.12.0"
+        "react": "^19.2.6",
+        "react-dom": "^19.2.6",
+        "react-router-dom": "^7.15.0"
     },
     "devDependencies": {
         "@eslint/js": "^9.39.2",
@@ -58,7 +58,7 @@
         "sass": "^1.77.7",
         "tailwindcss": "^3.4.4",
         "typescript": "^5.9.3",
-        "typescript-eslint": "^8.52.0",
+        "typescript-eslint": "^8.59.2",
         "vite": "^6.4.1"
     }
 }
